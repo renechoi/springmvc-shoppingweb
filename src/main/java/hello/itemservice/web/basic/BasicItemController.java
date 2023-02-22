@@ -55,27 +55,34 @@ public class BasicItemController {
 //    }
 
 //    @PostMapping("/add")
-//    public String addItemV2(@ModelAttribute("item") Item item, Model model) {
-//
-//        itemRepository.save(item);
-////        model.addAttribute("item", item);
-//
-//        return "basic/item";
-//    }
+    public String addItemV2(@ModelAttribute("item") Item item, Model model) {
+
+        itemRepository.save(item);
+//        model.addAttribute("item", item);
+
+        return "basic/item";
+    }
 
 
 
 //    @PostMapping("/add")
-//    public String addItemV3(@ModelAttribute Item item) {
-//        itemRepository.save(item);
-//        return "basic/item";
-//    }
+    public String addItemV3(@ModelAttribute Item item) {
+        itemRepository.save(item);
+        return "basic/item";
+    }
 
 
-    @PostMapping("/add")
+//    @PostMapping("/add")                // post로 하고 뷰로 리턴하는 방식 = 새로고침했을 때 반복되는 문제
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
+    }
+
+
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
